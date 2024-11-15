@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+/* Background Image Styling */
+.img {
+    background: url('https://s3-ap-southeast-1.amazonaws.com/housingman-v2/perspectives/images/3874/original/2.jpg?1471327564');
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(15px);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* General Body and Form Styling */
+body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.form {
+    max-width: 300px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+h2 {
+    font-size: 20px;
+    color: #3c3c3c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+.area, .location {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* Switch Field Group */
+.switch-group {
+    margin-bottom: 20px;
+}
+
+.group-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    color: #3c3c3c;
+}
+
+.switch-field {
+    display: flex;
+    flex-wrap: nowrap; /* Ensure all options fit in one row */
+    justify-content: space-between; /* Space evenly */
+    margin-bottom: 36px;
+    overflow: hidden;
+}
+
+.switch-field label {
+    background-color: #f0e3d3;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    text-align: center;
+    padding: 8px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    flex: 1; /* Allow labels to grow evenly */
+    margin: 0 2px; /* Add space between buttons */
+    transition: all 0.1s ease-in-out;
+}
+
+.switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+.switch-field input:checked + label {
+    background-color: #b7e0b5;
+    box-shadow: none;
+}
+
+.switch-field label:hover {
+    cursor: pointer;
+}
+
+.switch-field label:first-of-type {
+    border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+    border-radius: 0 4px 4px 0;
+}
+
+/* Buttons */
+.submit {
+    background: #a5dc86;
+    width: 100%;
+    border: 0;
+    padding: 10px;
+    margin: 20px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit:hover {
+    background: #8fc7a5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Results Display */
+.result {
+    background: #f0e3d3;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    color: #3c3c3c;
+}
+
+/* Media Queries for Mobile Devices */
+@media screen and (max-width: 480px) {
+    .form {
+        max-width: 90%;
+        margin: 20px auto;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .submit {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .result {
+        font-size: 14px;
+    }
+}
