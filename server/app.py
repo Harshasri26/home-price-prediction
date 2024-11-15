@@ -7,7 +7,7 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 # Route to render the HTML page
 @app.route("/")
 def index():
-    return render_template('app.html')  # Renders the HTML file (app.html)
+    return render_template('index.html')  # Renders the HTML file (app.html)
 
 # Route to fetch location names for the dropdown
 @app.route('/api/location_names', methods=['GET'])
