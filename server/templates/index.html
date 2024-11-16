@@ -4,35 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Price Prediction</title>
-    
-    <!-- Link to CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}?v=1">
-
-    <!-- Link to Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    
-    <!-- jQuery Library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <!-- Background Image -->
     <div class="img"></div>
-
-    <!-- Main Form -->
     <div id="main" class="form">
         <h2>Home Price Prediction</h2>
-
-        <!-- Location Dropdown -->
         <label for="uiLocations">Location</label>
         <select id="uiLocations" class="location" name="location">
             <option value="">Select Location</option>
         </select>
-
-        <!-- Square Feet Input -->
         <label for="uiSqft">Total Square Feet</label>
         <input type="number" id="uiSqft" class="area" name="total_sqft" placeholder="Enter total square feet">
-
-        <!-- BHK Radio Buttons -->
         <div class="switch-group">
             <label class="group-label">BHK</label>
             <div class="switch-field">
@@ -49,8 +34,6 @@
                 <label for="bhk4">4 BHK</label>
             </div>
         </div>
-
-        <!-- Bathrooms Radio Buttons -->
         <div class="switch-group">
             <label class="group-label">Bathrooms</label>
             <div class="switch-field">
@@ -67,23 +50,15 @@
                 <label for="bath4">4 Bathrooms</label>
             </div>
         </div>
-
-        <!-- Estimate Button -->
         <button id="estimatePriceButton" class="submit">Estimate Price</button>
-
-        <!-- Display Estimated Price -->
         <div id="uiEstimatedPrice" class="result">
             Estimated Price: ₹<span>0</span> L
         </div>
     </div>
-
-    <!-- JavaScript to Fetch Data -->
     <script>
         $(document).ready(function() {
-            // Fetch location names from the Flask API and populate the dropdown
             $.get("/api/location_names", function(data) {
                 if (data.locations && data.locations.length > 0) {
-                    // Populate the dropdown with location options
                     data.locations.forEach(function(location) {
                         $('#uiLocations').append('<option value="' + location + '">' + location + '</option>');
                     });
@@ -91,21 +66,15 @@
                     console.log("No locations found.");
                 }
             });
-
-            // Event handler for the 'Estimate Price' button click
             $('#estimatePriceButton').on('click', function() {
                 var total_sqft = $('#uiSqft').val();
                 var location = $('#uiLocations').val();
                 var bhk = $("input[name='uiBHK']:checked").val();
                 var bath = $("input[name='uiBathrooms']:checked").val();
-
-                // Check if any value is missing before sending the request
                 if (!total_sqft || !location || !bhk || !bath) {
                     alert("Please fill in all the fields!");
                     return;
                 }
-
-                // Send the data via POST request to predict the home price
                 $.post("/api/predict_home_price", {
                     total_sqft: total_sqft,
                     location: location,
@@ -113,11 +82,9 @@
                     bath: bath
                 })
                 .done(function(response) {
-                    // Display the estimated price in the UI
                     $('#uiEstimatedPrice span').text(response.estimated_price);
                 })
                 .fail(function(xhr, status, error) {
-                    // Log the error for debugging
                     console.error("Error fetching price:", error);
                     console.error("Response:", xhr.responseText);
                     alert("Error in fetching the price. Please try again.");
